@@ -1,0 +1,8 @@
+# Godot auto-generados
+.godot/
+*.import
+*.uid
+
+# Exportaciones
+/export/
+
