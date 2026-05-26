@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ps8grem3lrjn"]
+
+[ext_resource type="PackedScene" uid="uid://dn20lo70poi8e" path="res://scenes/player.tscn" id="1_ja3cl"]
+[ext_resource type="PackedScene" uid="uid://dnektxdqxfxl8" path="res://scenes/path.tscn" id="1_og8nj"]
+
+[node name="testeTorre" type="Node2D" unique_id=13309384]
+
+[node name="path_mapa" parent="." unique_id=6637814 instance=ExtResource("1_og8nj")]
+
+[node name="Player" parent="." unique_id=548720023 instance=ExtResource("1_ja3cl")]
+position = Vector2(304, 284)

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var path_follow = get_parent()
 
+@export var vida: int = 2
 @export var speed: float = 100.0
 @export var min_walk_time: float = 1.0
 @export var max_walk_time: float = 8.0
@@ -55,3 +56,8 @@ func actualizar_animacion():
 	elif direccion.y <= -0.5:
 		anim = "move_up"
 	$AnimatedSprite2D.play(anim)
+
+func take_damage(damage: int):
+	vida -= damage
+	if vida <= 0:
+		self.queue_free()

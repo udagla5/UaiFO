@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://dnektxdqxfxl8"]
 
-[ext_resource type="Script" uid="uid://c8kcqs118g44" path="res://main.gd" id="1_0xr8s"]
+[ext_resource type="Script" uid="uid://dv5pog5a0bjtc" path="res://scripts/main.gd" id="1_0xr8s"]
 [ext_resource type="Texture2D" uid="uid://duf1eej7r3v22" path="res://assets/seasonal sample (summer).png" id="1_jnavc"]
-[ext_resource type="PackedScene" uid="uid://cgexwem8vbjs0" path="res://enemy.tscn" id="2_ckofj"]
+[ext_resource type="PackedScene" uid="uid://cgexwem8vbjs0" path="res://scenes/enemy.tscn" id="2_ckofj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xr8s"]
 texture = ExtResource("1_jnavc")

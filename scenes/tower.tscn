@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cll1iofu1v8vg"]
+
+[ext_resource type="Script" uid="uid://bmx7eblq3i1xb" path="res://scripts/tower.gd" id="1_ay4al"]
+[ext_resource type="PackedScene" uid="uid://ta367eydp7ff" path="res://scenes/bullet.tscn" id="2_ktxwe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrbg1"]
+
+[node name="tower" type="Node2D" unique_id=1997529433]
+script = ExtResource("1_ay4al")
+bullet_scene = ExtResource("2_ktxwe")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=231676841]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1306220715]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=142243742]
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_qrbg1")
+
+[node name="Timer" type="Timer" parent="." unique_id=481938417]
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
