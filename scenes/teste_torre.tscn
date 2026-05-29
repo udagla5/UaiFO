@@ -8,4 +8,5 @@
 [node name="path_mapa" parent="." unique_id=6637814 instance=ExtResource("1_og8nj")]
 
 [node name="Player" parent="." unique_id=548720023 instance=ExtResource("1_ja3cl")]
-position = Vector2(304, 284)
+position = Vector2(303, 284)
+scale = Vector2(0.5, 0.5)

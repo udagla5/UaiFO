@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cgexwem8vbjs0"]
 
 [ext_resource type="Texture2D" uid="uid://bcpp58s86ncrp" path="res://assets/Idle (32x32).png" id="1_7k104"]
-[ext_resource type="Script" uid="uid://jtaxho7i47p6" path="res://scripts/enemy.gd" id="2_md0e3"]
+[ext_resource type="Script" uid="uid://vebfy52ei50o" path="res://scripts/enemy.gd" id="2_md0e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7k104"]
 atlas = ExtResource("1_7k104")
@@ -429,4 +429,5 @@ animation = &"move_up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1477344250]
 position = Vector2(0.5, 3.5)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_qi2p4")
