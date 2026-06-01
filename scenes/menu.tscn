@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://mq2680sgrmnf"]
+
+[ext_resource type="Script" uid="uid://tiyemhhbu8e2" path="res://scripts/menu.gd" id="1_yqeox"]
+
+[node name="Menu" type="Node2D" unique_id=2079271879]
+script = ExtResource("1_yqeox")
+
+[node name="Fundo" type="ColorRect" parent="." unique_id=114254437]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.5176471, 0.31764707, 1, 1)
+
+[node name="Titulo" type="Label" parent="Fundo" unique_id=1701998096]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.0
+offset_top = -174.0
+offset_right = 178.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "U(ai)FO"
+
+[node name="BotaoJogar" type="Button" parent="Fundo" unique_id=1499638067]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -24.0
+offset_right = 66.0
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Jogar"
+
+[node name="BotaoSair" type="Button" parent="Fundo" unique_id=1712111477]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 76.0
+offset_right = 50.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Sair"
+
+[connection signal="pressed" from="Fundo/BotaoJogar" to="." method="_on_botao_jogar_pressed"]
+[connection signal="pressed" from="Fundo/BotaoSair" to="." method="_on_botao_sair_pressed"]
