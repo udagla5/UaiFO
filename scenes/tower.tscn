@@ -9,6 +9,49 @@
 script = ExtResource("1_ay4al")
 bullet_scene = ExtResource("2_ktxwe")
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1306220715]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=142243742]
+scale = Vector2(6, 6)
+shape = SubResource("CircleShape2D_qrbg1")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D" unique_id=1081406846]
+offset_left = -46.0
+offset_top = -36.0
+offset_right = 47.0
+offset_bottom = 38.0
+color = Color(0.9529412, 0, 0, 0.32941177)
+
+[node name="ColorRect3" type="ColorRect" parent="Area2D/ColorRect" unique_id=476695202]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 10.0
+offset_right = 101.0
+offset_bottom = 61.0
+color = Color(0.9529412, 0, 0, 0.32941177)
+
+[node name="ColorRect4" type="ColorRect" parent="Area2D/ColorRect" unique_id=449030546]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -13.0
+offset_right = 82.0
+color = Color(0.9529412, 0, 0, 0.32941177)
+
+[node name="ColorRect2" type="ColorRect" parent="Area2D/ColorRect" unique_id=260597403]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 12.0
+offset_bottom = 56.0
+color = Color(0.9529412, 0, 0, 0.32941177)
+
+[node name="ColorRect" type="ColorRect" parent="Area2D/ColorRect" unique_id=657880795]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 74.0
+offset_right = 80.0
+offset_bottom = 87.0
+color = Color(0.9529412, 0, 0, 0.32941177)
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=231676841]
 anchors_preset = 8
 anchor_left = 0.5
@@ -21,12 +64,6 @@ offset_right = 10.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1306220715]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=142243742]
-scale = Vector2(6, 6)
-shape = SubResource("CircleShape2D_qrbg1")
 
 [node name="Timer" type="Timer" parent="." unique_id=481938417]
 autostart = true
