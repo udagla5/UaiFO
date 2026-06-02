@@ -2,22 +2,19 @@ extends CharacterBody2D
 
 @onready var path_follow = get_parent()
 
-@export var vida: int = 2
-@export var speed: float = 100.0
-@export var min_walk_time: float = 1.0
-@export var max_walk_time: float = 8.0
-@export var min_pause_time: float = 1.0
-@export var max_pause_time: float = 5.0
+@export var stats: EnemyStats
 
+var vida_atual: int
 var tiempo_restante: float = 0.0
 var pausa: bool = false
 var direccion: Vector2 = Vector2.ZERO
 var posicion_anterior: Vector2
 
 func _ready():
+	vida_atual = stats.vida
+	scale = Vector2(stats.tamanho, stats.tamanho)
 	posicion_anterior = path_follow.global_position
-	# empieza caminando con un tiempo aleatorio
-	tiempo_restante = randf_range(min_walk_time, max_walk_time)
+	tiempo_restante = randf_range(stats.min_walk_time, stats.max_walk_time)
 
 func _physics_process(delta: float):
 	tiempo_restante -= delta
@@ -25,12 +22,12 @@ func _physics_process(delta: float):
 	if tiempo_restante <= 0.0:
 		pausa = !pausa
 		if pausa:
-			tiempo_restante = randf_range(min_pause_time, max_pause_time)
+			tiempo_restante = randf_range(stats.min_pause_time, stats.max_pause_time)
 		else:
-			tiempo_restante = randf_range(min_walk_time, max_walk_time)
+			tiempo_restante = randf_range(stats.min_walk_time, stats.max_walk_time)
 
 	if not pausa:
-		path_follow.progress += speed * delta
+		path_follow.progress += stats.speed * delta
 
 	var pos_actual = path_follow.global_position
 	if not pausa:
@@ -40,7 +37,7 @@ func _physics_process(delta: float):
 	posicion_anterior = pos_actual
 
 	if path_follow.progress_ratio >= 1.0:
-		queue_free()  # llegó al celeiro — aquí después le restás vida
+		queue_free()
 
 func _process(_delta: float):
 	actualizar_animacion()
@@ -58,6 +55,7 @@ func actualizar_animacion():
 	$AnimatedSprite2D.play(anim)
 
 func take_damage(damage: int):
-	vida -= damage
-	if vida <= 0:
-		self.queue_free()
+	vida_atual -= damage
+	if vida_atual <= 0:
+		GameController.aumento_dinheiro(stats.recompensa)
+		queue_free()

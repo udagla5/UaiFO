@@ -34,7 +34,7 @@ func _spawn_enemy():
 	path.add_child(follow)
 
 	# instancia el enemigo y lo pone adentro del PathFollow2D
-	var enemy = enemy_scene.instantiate()
+	var enemy = enemy_scenes.pick_random().instantiate()
 	follow.add_child(enemy)
 	follow.progress = 0.0
 
