@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dn20lo70poi8e" path="res://scenes/player.tscn" id="1_ja3cl"]
 [ext_resource type="PackedScene" uid="uid://dnektxdqxfxl8" path="res://scenes/path.tscn" id="1_og8nj"]
-[ext_resource type="Script" uid="uid://bm02qt1iesf72" path="res://scenes/teste_torre.gd" id="1_pd6n5"]
+[ext_resource type="Script" uid="uid://cw5ejtfk7r4r1" path="res://scenes/teste_torre.gd" id="1_pd6n5"]
 [ext_resource type="PackedScene" uid="uid://blpt7vilmykht" path="res://scenes/celeiro.tscn" id="4_ey4mx"]
-[ext_resource type="Script" uid="uid://dyv3g7xxfkpvf" path="res://scenes/Ui.gd" id="5_ey4mx"]
-[ext_resource type="Script" uid="uid://bvnqnrcvrg8m2" path="res://scenes/menu_pausa.gd" id="6_fp1g3"]
+[ext_resource type="Script" uid="uid://bmvsisgp2epis" path="res://scenes/Ui.gd" id="5_ey4mx"]
+[ext_resource type="Script" uid="uid://cnw2veh4m4cnd" path="res://scenes/menu_pausa.gd" id="6_fp1g3"]
 
 [node name="testeTorre" type="Node2D" unique_id=13309384]
 script = ExtResource("1_pd6n5")

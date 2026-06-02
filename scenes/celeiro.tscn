@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blpt7vilmykht"]
 
-[ext_resource type="Script" uid="uid://chettijpsq8tn" path="res://scripts/celeiro.gd" id="1_imsx6"]
+[ext_resource type="Script" uid="uid://ce82cb5363mlh" path="res://scripts/celeiro.gd" id="1_imsx6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wa21m"]
 size = Vector2(40, 40)
@@ -12,7 +12,7 @@ script = ExtResource("1_imsx6")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1039923778]
 offset_right = 40.0
 offset_bottom = 40.0
-color = Color(0.7854926, 0, 0.09471262, 1)
+color = Color(0.78431374, 0, 0.09411765, 0.60784316)
 metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=19258657]
