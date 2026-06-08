@@ -2,9 +2,12 @@ extends Area2D
 
 var target: Node2D
 var speed: float = 400.0
+var dano: int = 1
 
-func set_target(alvo_recebido: Node2D) -> void:
-	target = alvo_recebido
+func setup(alvo: Node2D, _dano: int, _speed: float) -> void:
+	target = alvo
+	dano = _dano
+	speed = _speed
 
 func _process(delta: float) -> void:
 	if is_instance_valid(target):
@@ -17,8 +20,7 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		if body.has_method("take_damage"):
-			body.take_damage(1)
+			body.take_damage(dano)
 		else:
 			body.queue_free()
-			
 		queue_free()

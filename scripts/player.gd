@@ -36,14 +36,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		print("espaço foi apertado!!!")
-		if GameController.dinheiro_atual > 200:
-			print("dinheiro maior que 200")
-			place_tower()
-			GameController.diminui_dinheiro(200)
-	
+		place_tower()
+
 func place_tower() -> void:
 	if tower_scene != null:
 		var new_tower = tower_scene.instantiate()
-		get_parent().add_child(new_tower)
-		new_tower.global_position = global_position
+		if GameController.dinheiro_atual >= new_tower.stats.preco:
+			get_parent().add_child(new_tower)
+			new_tower.global_position = global_position
+			GameController.diminui_dinheiro(new_tower.stats.preco)
+		else:
+			new_tower.free()

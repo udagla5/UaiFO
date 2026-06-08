@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TowerStats" format=3 uid="uid://c0kdy5s3qlksn"]
+
+[ext_resource type="Script" uid="uid://dqnqk4qutwwgo" path="res://scripts/TowerStats.gd" id="1_3awxq"]
+
+[resource]
+script = ExtResource("1_3awxq")
+preco = 100
+alcance = 20.0

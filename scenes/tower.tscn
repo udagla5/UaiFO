@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://cll1iofu1v8vg"]
 
-[ext_resource type="Script" uid="uid://bmx7eblq3i1xb" path="res://scripts/tower.gd" id="1_ay4al"]
+[ext_resource type="Script" uid="uid://bg1fx66gag8od" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://ta367eydp7ff" path="res://scenes/bullet.tscn" id="2_ktxwe"]
+[ext_resource type="Resource" uid="uid://c0kdy5s3qlksn" path="res://resources/planta_1.tres" id="2_qrbg1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrbg1"]
 
 [node name="tower" type="Node2D" unique_id=1997529433]
 script = ExtResource("1_ay4al")
+stats = ExtResource("2_qrbg1")
 bullet_scene = ExtResource("2_ktxwe")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1306220715]

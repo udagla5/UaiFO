@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_y4h6k")
 speed = 70.0
+recompensa = 15
 min_walk_time = 2.0
 max_walk_time = 5.0
 min_pause_time = 0.0
