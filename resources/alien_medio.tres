@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dt27uioa1dxo1"]
+
+[ext_resource type="Script" uid="uid://5cghxtvb7d1o" path="res://scripts/EnemyStats.gd" id="1_mc2gl"]
+
+[resource]
+script = ExtResource("1_mc2gl")
+vida = 50
+speed = 35.0
+dano_celeiro = 20
+recompensa = 25
+min_walk_time = 2.5
+max_walk_time = 3.0
+max_pause_time = 3.0

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://jom2yi3v7ylx"]
+
+[ext_resource type="Script" uid="uid://5cghxtvb7d1o" path="res://scripts/EnemyStats.gd" id="1_dkfux"]
+
+[resource]
+script = ExtResource("1_dkfux")
+vida = 25
+speed = 55.0
+recompensa = 25
+min_walk_time = 2.0
+max_walk_time = 2.5
+min_pause_time = 0.0
+max_pause_time = 1.0
+tamanho = 0.8

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bym2r2hm2xiqu"]
 
 [ext_resource type="Script" uid="uid://vebfy52ei50o" path="res://scripts/enemy.gd" id="1_tc5h8"]
-[ext_resource type="Resource" uid="uid://fe068s6c2aft" path="res://resources/alien_2.tres" id="2_tc5h8"]
+[ext_resource type="Resource" uid="uid://fe068s6c2aft" path="res://resources/alien_pesado.tres" id="2_tc5h8"]
 [ext_resource type="Texture2D" uid="uid://bokarnttrvygk" path="res://assets/Spritesheet Farmer (Walk _ Damage _ Idle).png" id="3_tc5h8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_net2b"]

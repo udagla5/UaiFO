@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_3awxq")
 preco = 100
+dano_bala = 25
+velocidade_bala = 200.0
 alcance = 20.0
