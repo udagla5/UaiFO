@@ -169,8 +169,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi2p4"]
 size = Vector2(19, 25)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=906401226 groups=["enemy"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1335538808 groups=["enemy"]]
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 script = ExtResource("1_drps1")
 stats = ExtResource("2_drps1")
 

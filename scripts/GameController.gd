@@ -16,6 +16,10 @@ func _ready() -> void:
 func damage_player(qtd: int):
 	vida_player -= qtd
 	vida_player_mudou.emit(vida_player) 
+	
+	if vida_player <= 0:
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		
 
 func damage_celeiro(qtd: int):
 	vida_celeiro -= qtd
@@ -34,7 +38,9 @@ func diminui_dinheiro(qtd: int):
 	dinheiro_mudou.emit(dinheiro_atual)
 
 func reset_game():
+	vida_player = 3
 	vida_celeiro = 100
 	dinheiro_atual = 0
+	vida_player_mudou.emit(vida_player)
 	dinheiro_mudou.emit(dinheiro_atual)
 	vida_celeiro_mudou.emit(vida_celeiro)

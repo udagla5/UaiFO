@@ -107,6 +107,7 @@ size = Vector2(16.666666, 25)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=906401226 groups=["enemy"]]
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 script = ExtResource("1_tc5h8")
 stats = ExtResource("2_tc5h8")
 

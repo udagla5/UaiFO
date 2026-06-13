@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://ps8grem3lrjn"]
 
+[ext_resource type="Script" uid="uid://cw5ejtfk7r4r1" path="res://scripts/teste_torre.gd" id="1_fp1g3"]
 [ext_resource type="PackedScene" uid="uid://dn20lo70poi8e" path="res://scenes/player.tscn" id="1_ja3cl"]
 [ext_resource type="PackedScene" uid="uid://dnektxdqxfxl8" path="res://scenes/path.tscn" id="1_og8nj"]
-[ext_resource type="Script" uid="uid://cw5ejtfk7r4r1" path="res://scenes/teste_torre.gd" id="1_pd6n5"]
 [ext_resource type="PackedScene" uid="uid://blpt7vilmykht" path="res://scenes/celeiro.tscn" id="4_ey4mx"]
-[ext_resource type="Script" uid="uid://bmvsisgp2epis" path="res://scenes/Ui.gd" id="5_ey4mx"]
-[ext_resource type="Script" uid="uid://cnw2veh4m4cnd" path="res://scenes/menu_pausa.gd" id="6_fp1g3"]
+[ext_resource type="Script" uid="uid://bmvsisgp2epis" path="res://scripts/Ui.gd" id="5_olrfu"]
+[ext_resource type="Script" uid="uid://cnw2veh4m4cnd" path="res://scripts/menu_pausa.gd" id="6_o0rrs"]
 
 [node name="testeTorre" type="Node2D" unique_id=13309384]
-script = ExtResource("1_pd6n5")
+script = ExtResource("1_fp1g3")
 
 [node name="path_mapa" parent="." unique_id=6637814 instance=ExtResource("1_og8nj")]
 
@@ -25,7 +25,7 @@ wait_time = 0.2
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=517038789 node_paths=PackedStringArray("vida_celeiro_UI", "vida_player_UI", "rodada_atual_UI", "dinheiro_atual_UI")]
-script = ExtResource("5_ey4mx")
+script = ExtResource("5_olrfu")
 vida_celeiro_UI = NodePath("vidaCeleiro")
 vida_player_UI = NodePath("vidaPlayer")
 rodada_atual_UI = NodePath("vidaRodada")
@@ -67,7 +67,7 @@ text = "a"
 
 [node name="MenuPausa" type="CanvasLayer" parent="." unique_id=153965628]
 process_mode = 3
-script = ExtResource("6_fp1g3")
+script = ExtResource("6_o0rrs")
 
 [node name="ColorRect" type="ColorRect" parent="MenuPausa" unique_id=588624231]
 offset_right = 1152.0

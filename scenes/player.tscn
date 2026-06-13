@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cll1iofu1v8vg" path="res://scenes/tower.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://bokarnttrvygk" path="res://assets/Spritesheet Farmer (Walk _ Damage _ Idle).png" id="3_qhqgy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(21, 25.75)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("3_qhqgy")
 region = Rect2(0, 128, 32, 32)
@@ -289,22 +292,28 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
-size = Vector2(21, 25.75)
-
 [node name="Player" type="CharacterBody2D" unique_id=548720023 node_paths=PackedStringArray("animation")]
 scale = Vector2(2, 2)
 script = ExtResource("1_3vyb7")
+tempo_max_invuneravel = 1.0
 animation = NodePath("AnimatedSprite2D")
 tower_scene = ExtResource("2_dqkch")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1705709239]
+position = Vector2(0.5, 3.75)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_dqkch")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=468428724]
 position = Vector2(1.5, -6)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_f1ej7")
-animation = &"walk_up"
+animation = &"damage"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=335825204]
+[node name="Area2D" type="Area2D" parent="." unique_id=1131016301]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=335825204]
 position = Vector2(0.5, 3.75)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_dqkch")
@@ -315,3 +324,5 @@ limit_left = 0
 limit_top = 0
 limit_right = 1152
 limit_bottom = 654
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
