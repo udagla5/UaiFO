@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="UaiFO - Prototipo"
-run/main_scene="uid://dnektxdqxfxl8"
+run/main_scene="uid://mq2680sgrmnf"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

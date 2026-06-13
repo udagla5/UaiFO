@@ -1,7 +1,6 @@
-[gd_scene format=3 uid="uid://cgexwem8vbjs0"]
+[gd_scene format=3 uid="uid://dqcfhavygkrxf"]
 
 [ext_resource type="Texture2D" uid="uid://bcpp58s86ncrp" path="res://assets/Idle (32x32).png" id="1_7k104"]
-[ext_resource type="Resource" uid="uid://dt27uioa1dxo1" path="res://resources/alien_medio.tres" id="2_4ra3w"]
 [ext_resource type="Script" uid="uid://vebfy52ei50o" path="res://scripts/enemy.gd" id="2_md0e3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7k104"]
@@ -424,7 +423,6 @@ size = Vector2(19, 25)
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 script = ExtResource("2_md0e3")
-stats = ExtResource("2_4ra3w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=888988515]
 sprite_frames = SubResource("SpriteFrames_n0g06")
