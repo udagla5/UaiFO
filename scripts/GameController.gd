@@ -37,10 +37,16 @@ func diminui_dinheiro(qtd: int):
 	dinheiro_atual -= qtd
 	dinheiro_mudou.emit(dinheiro_atual)
 
+func avancar_rodada():
+	rodada_atual += 1
+	rodada_mudou.emit(rodada_atual)
+
 func reset_game():
 	vida_player = 3
 	vida_celeiro = 100
 	dinheiro_atual = 0
+	rodada_atual = 1
 	vida_player_mudou.emit(vida_player)
 	dinheiro_mudou.emit(dinheiro_atual)
 	vida_celeiro_mudou.emit(vida_celeiro)
+	rodada_mudou.emit(rodada_atual)
