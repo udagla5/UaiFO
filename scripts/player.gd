@@ -9,11 +9,31 @@ var invulneravel: bool = false
 var tempo_atual_invuneravel: float = 0
 
 @export var animation: AnimatedSprite2D
-@export var tower_scene: PackedScene
+@export var tower_scenes: Array[PackedScene] = []
 
+var planta_selecionada: int = 0
 
 func _ready() -> void:
 	pass
+
+func _unhandled_input(event: InputEvent) -> void:
+	var anterior = planta_selecionada
+
+	if event is InputEventKey and event.pressed:
+		match event.physical_keycode:
+			KEY_1: planta_selecionada = 0
+			KEY_2: planta_selecionada = 1
+			KEY_3: planta_selecionada = 2
+			KEY_4: planta_selecionada = 3
+
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			planta_selecionada = (planta_selecionada - 1 + tower_scenes.size()) % tower_scenes.size()
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			planta_selecionada = (planta_selecionada + 1) % tower_scenes.size()
+
+	if planta_selecionada != anterior:
+		print("Planta selecionada: ", planta_selecionada + 1)
 
 func _physics_process(delta: float) -> void:
 	if invulneravel:
@@ -56,6 +76,7 @@ func place_tower() -> void:
 	print("Posição Player: ", posicao_player)
 	print("Posição Torre Relativa X: ", posicao_torre_x)
 	print("Posição Torre Relativa Y: ", posicao_torre_y)
+	var tower_scene: PackedScene = tower_scenes[planta_selecionada]
 	if tower_scene != null:
 		var new_tower = tower_scene.instantiate()
 		if GameController.dinheiro_atual >= new_tower.stats.preco:
