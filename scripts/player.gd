@@ -10,11 +10,15 @@ var tempo_atual_invuneravel: float = 0
 
 @export var animation: AnimatedSprite2D
 @export var tower_scenes: Array[PackedScene] = []
+@export var respawn_point: Node2D
+@export var tempo_respawn: float = 5.0
+@export var tempo_respawn_incremento: float = 2.0
 
 var planta_selecionada: int = 0
+var morto: bool = false
 
 func _ready() -> void:
-	pass
+	GameController.player_morreu.connect(_on_player_morreu)
 
 func _unhandled_input(event: InputEvent) -> void:
 	var anterior = planta_selecionada
@@ -36,6 +40,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("Planta selecionada: ", planta_selecionada + 1)
 
 func _physics_process(delta: float) -> void:
+	if morto:
+		return
+
 	if invulneravel:
 		tempo_atual_invuneravel += delta
 		
@@ -97,3 +104,23 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		GameController.damage_player(1)
 		invulneravel = true
 		tempo_atual_invuneravel = 0
+
+func _on_player_morreu() -> void:
+	morto = true
+	visible = false
+	$CollisionShape2D2.set_deferred("disabled", true)
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+
+	var tempo = tempo_respawn + (GameController.mortes_player - 1) * tempo_respawn_incremento
+	await get_tree().create_timer(tempo).timeout
+
+	if respawn_point:
+		global_position = respawn_point.global_position
+
+	visible = true
+	$CollisionShape2D2.set_deferred("disabled", false)
+	$Area2D/CollisionShape2D.set_deferred("disabled", false)
+
+	invulneravel = true
+	tempo_atual_invuneravel = 0
+	morto = false

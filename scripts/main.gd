@@ -35,6 +35,7 @@ var pesos_enemy_ativos: Array = []
 var aguardando_proxima_rodada: bool = false
 
 func _ready() -> void:
+	$Player.respawn_point = $RespawnPoint
 	_iniciar_rodada()
 
 func _process(delta: float):

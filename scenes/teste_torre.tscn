@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ps8grem3lrjn"]
 
 [ext_resource type="Script" uid="uid://cw5ejtfk7r4r1" path="res://scripts/teste_torre.gd" id="1_fp1g3"]
-[ext_resource type="PackedScene" uid="uid://dn20lo70poi8e" path="res://scenes/player.tscn" id="1_ja3cl"]
 [ext_resource type="PackedScene" uid="uid://dnektxdqxfxl8" path="res://scenes/path.tscn" id="1_og8nj"]
 [ext_resource type="PackedScene" uid="uid://blpt7vilmykht" path="res://scenes/celeiro.tscn" id="4_ey4mx"]
 [ext_resource type="Script" uid="uid://bmvsisgp2epis" path="res://scripts/Ui.gd" id="5_olrfu"]
@@ -11,10 +10,6 @@
 script = ExtResource("1_fp1g3")
 
 [node name="path_mapa" parent="." unique_id=6637814 instance=ExtResource("1_og8nj")]
-
-[node name="Player" parent="." unique_id=548720023 instance=ExtResource("1_ja3cl")]
-position = Vector2(303, 284)
-scale = Vector2(0.5, 0.5)
 
 [node name="celeiro" parent="." unique_id=873078762 instance=ExtResource("4_ey4mx")]
 position = Vector2(343, 364)
