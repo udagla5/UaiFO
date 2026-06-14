@@ -6,7 +6,7 @@
 size = Vector2(40, 40)
 
 [node name="bullet" type="Area2D" unique_id=228919853]
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_mkf8s")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1588309834]

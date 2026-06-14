@@ -36,6 +36,7 @@ func _fase_ativa():
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	print("Inimigo entrou no range")
 	if body.is_in_group("enemy"):
 		enemies_in_range.append(body)
 
@@ -44,11 +45,14 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		enemies_in_range.erase(body)
 
 func _on_timer_timeout() -> void:
+	print("*Tiro hipotetico*")
 	enemies_in_range = enemies_in_range.filter(func(enemy): return is_instance_valid(enemy))
 	if enemies_in_range.size() > 0:
+		print("*Tiro real*")
 		shoot(enemies_in_range[0])
 
 func shoot(alvo: Node2D) -> void:
+	print("Deveria ter atirado!!!")
 	if bullet_scene != null:
 		var bala = bullet_scene.instantiate()
 		get_parent().add_child(bala)
