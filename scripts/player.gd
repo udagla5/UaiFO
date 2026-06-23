@@ -76,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		place_tower()
 
 func place_tower() -> void:
-	if tower_scene == null:
+	if tower_scenes == null:
 		return
 		
 	var tilemap = get_tree().get_first_node_in_group("mapa")
@@ -101,10 +101,11 @@ func place_tower() -> void:
 		return
 
 	# 4. Verifica economia e constrói
-	var new_tower = tower_scene.instantiate()
+	var new_tower = tower_scenes[0].instantiate()
+	
 	if GameController.dinheiro_atual >= new_tower.stats.preco:
 		get_parent().add_child(new_tower)
-		new_tower.global_position = posicao_alvo_global 
+		new_tower.global_position = posicao_alvo_global
 		new_tower.add_to_group("torres")
 		GameController.diminui_dinheiro(new_tower.stats.preco)
 	else:
