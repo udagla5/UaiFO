@@ -4,12 +4,13 @@ signal vida_celeiro_mudou(nova_vida: int)
 signal vida_player_mudou(nova_vida: int)
 signal rodada_mudou(nova_rodada: int)
 signal dinheiro_mudou(novo_dinheiro: int)
+signal novo_erro(erro: String)
 signal player_morreu()
 
 @export var vida_celeiro: int = 100
 @export var vida_player: int = 3
 @export var rodada_atual: int = 1
-@export var dinheiro_atual: int = 0
+@export var dinheiro_atual: int = 400
 
 @export var penalidade_morte_base: int = 50
 @export var penalidade_morte_incremento: int = 25
@@ -49,6 +50,9 @@ func diminui_dinheiro(qtd: int):
 	dinheiro_atual = max(0, dinheiro_atual - qtd)
 	dinheiro_mudou.emit(dinheiro_atual)
 
+func enviar_mensagem_erro(mensagem: String) -> void:
+	novo_erro.emit(mensagem)
+  
 func avancar_rodada():
 	rodada_atual += 1
 	rodada_mudou.emit(rodada_atual)
@@ -56,7 +60,7 @@ func avancar_rodada():
 func reset_game():
 	vida_player = 3
 	vida_celeiro = 100
-	dinheiro_atual = 0
+	dinheiro_atual = 400
 	rodada_atual = 1
 	mortes_player = 0
 	vida_player_mudou.emit(vida_player)

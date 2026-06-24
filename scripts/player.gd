@@ -76,26 +76,41 @@ func _physics_process(delta: float) -> void:
 		place_tower()
 
 func place_tower() -> void:
-	var posicao_player = self.position
-	var posicao_torre_x: int = int(posicao_player.x/16)
-	var posicao_torre_y: int = int(posicao_player.y/16)
+	if tower_scenes == null:
+		return
+		
+	var tilemap = get_tree().get_first_node_in_group("mapa")
+	if tilemap == null:
+		return
+		
+	# 1. Posição Alvo
+	var posicao_interna = tilemap.to_local(global_position)
+	var coord_mapa = tilemap.local_to_map(posicao_interna)
+	var posicao_alvo_global = tilemap.to_global(tilemap.map_to_local(coord_mapa))
 	
-	print("Posição Player: ", posicao_player)
-	print("Posição Torre Relativa X: ", posicao_torre_x)
-	print("Posição Torre Relativa Y: ", posicao_torre_y)
-	var tower_scene: PackedScene = tower_scenes[planta_selecionada]
-	if tower_scene != null:
-		var new_tower = tower_scene.instantiate()
-		if GameController.dinheiro_atual >= new_tower.stats.preco:
-			get_parent().add_child(new_tower)
-			new_tower.global_position.x = (posicao_torre_x+1) * 16 - 8
-			new_tower.global_position.y = (posicao_torre_y+1) * 16 - 8
-			print("Posição Torre Reak X: ", new_tower.global_position.x)
-			print("Posição Torre Real Y: ", new_tower.global_position.y)
-			GameController.diminui_dinheiro(new_tower.stats.preco)
-		else:
-			new_tower.free()
+	# 2. Verifica se já existe uma torre
+	for torre in get_tree().get_nodes_in_group("torres"):
+		if torre.global_position.distance_to(posicao_alvo_global) < 1.0:
+			GameController.novo_erro.emit("Local Ocupado!")
+			return
 
+	# 3. Verifica permissão do terreno
+	var dados_do_chao = tilemap.get_cell_tile_data(coord_mapa)
+	if dados_do_chao == null or not dados_do_chao.get_custom_data("pode_construir"):
+		GameController.novo_erro.emit("Terreno Inválido!")
+		return
+
+	# 4. Verifica economia e constrói
+	var new_tower = tower_scenes[0].instantiate()
+	
+	if GameController.dinheiro_atual >= new_tower.stats.preco:
+		get_parent().add_child(new_tower)
+		new_tower.global_position = posicao_alvo_global
+		new_tower.add_to_group("torres")
+		GameController.diminui_dinheiro(new_tower.stats.preco)
+	else:
+		new_tower.free()
+		GameController.novo_erro.emit("Dinheiro Insuficiente!")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and not invulneravel:

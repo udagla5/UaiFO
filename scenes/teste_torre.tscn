@@ -19,12 +19,13 @@ scale = Vector2(12, 6)
 wait_time = 0.2
 autostart = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=517038789 node_paths=PackedStringArray("vida_celeiro_UI", "vida_player_UI", "rodada_atual_UI", "dinheiro_atual_UI")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=517038789 node_paths=PackedStringArray("vida_celeiro_UI", "vida_player_UI", "rodada_atual_UI", "dinheiro_atual_UI", "mensagem_falha")]
 script = ExtResource("5_olrfu")
 vida_celeiro_UI = NodePath("vidaCeleiro")
 vida_player_UI = NodePath("vidaPlayer")
 rodada_atual_UI = NodePath("vidaRodada")
 dinheiro_atual_UI = NodePath("Dinheiro")
+mensagem_falha = NodePath("TextoInfo")
 
 [node name="vidaCeleiro" type="Label" parent="CanvasLayer" unique_id=269370329]
 offset_right = 40.0
@@ -59,6 +60,19 @@ offset_bottom = 42.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 30
 text = "a"
+
+[node name="TextoInfo" type="Label" parent="CanvasLayer" unique_id=549230797]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
 
 [node name="MenuPausa" type="CanvasLayer" parent="." unique_id=153965628]
 process_mode = 3
