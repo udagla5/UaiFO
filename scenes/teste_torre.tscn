@@ -62,6 +62,7 @@ text = "a"
 
 [node name="MenuPausa" type="CanvasLayer" parent="." unique_id=153965628]
 process_mode = 3
+visible = false
 script = ExtResource("6_o0rrs")
 
 [node name="ColorRect" type="ColorRect" parent="MenuPausa" unique_id=588624231]
