@@ -3,13 +3,64 @@
 [ext_resource type="Script" uid="uid://bg1fx66gag8od" path="res://scripts/tower.gd" id="1_ay4al"]
 [ext_resource type="PackedScene" uid="uid://ta367eydp7ff" path="res://scenes/bullet.tscn" id="2_ktxwe"]
 [ext_resource type="Resource" uid="uid://c0kdy5s3qlksn" path="res://resources/planta_1.tres" id="2_qrbg1"]
+[ext_resource type="Texture2D" uid="uid://c57dkd7eidp73" path="res://assets/spritesheet crops.png" id="4_qrbg1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qrbg1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfguu"]
+atlas = ExtResource("4_qrbg1")
+region = Rect2(0, 640, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85u2j"]
+atlas = ExtResource("4_qrbg1")
+region = Rect2(320, 640, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl0gn"]
+atlas = ExtResource("4_qrbg1")
+region = Rect2(640, 640, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqps3"]
+atlas = ExtResource("4_qrbg1")
+region = Rect2(960, 640, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfw7u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfguu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85u2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl0gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqps3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
 
 [node name="tower" type="Node2D" unique_id=1997529433 groups=["torres"]]
 script = ExtResource("1_ay4al")
 stats = ExtResource("2_qrbg1")
 bullet_scene = ExtResource("2_ktxwe")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=231676841]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1306220715]
 collision_mask = 2
@@ -55,18 +106,12 @@ offset_right = 80.0
 offset_bottom = 87.0
 color = Color(0.9529412, 0, 0, 0.32941177)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=231676841]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=488684949]
+position = Vector2(0, -18)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_qfw7u")
+autoplay = "default"
+frame_progress = 0.5417974
 
 [node name="Timer" type="Timer" parent="." unique_id=481938417]
 autostart = true
