@@ -9,7 +9,7 @@ var invulneravel: bool = false
 var tempo_atual_invuneravel: float = 0
 
 @export var animation: AnimatedSprite2D
-@export var tower_scenes: Array[PackedScene] = []
+@export var plantas: Array[PackedScene] = []
 @export var respawn_point: Node2D
 @export var tempo_respawn: float = 5.0
 @export var tempo_respawn_incremento: float = 2.0
@@ -18,6 +18,7 @@ var planta_selecionada: int = 0
 var morto: bool = false
 
 func _ready() -> void:
+	GameController.plantas = plantas
 	GameController.player_morreu.connect(_on_player_morreu)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -32,9 +33,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			planta_selecionada = (planta_selecionada - 1 + tower_scenes.size()) % tower_scenes.size()
+			planta_selecionada = (planta_selecionada - 1 + GameController.slots_max) % GameController.slots_max
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			planta_selecionada = (planta_selecionada + 1) % tower_scenes.size()
+			planta_selecionada = (planta_selecionada + 1) % GameController.slots_max
 
 	if planta_selecionada != anterior:
 		print("Planta selecionada: ", planta_selecionada + 1)
@@ -76,18 +77,19 @@ func _physics_process(delta: float) -> void:
 		place_tower()
 
 func place_tower() -> void:
-	if tower_scenes == null:
+	if not GameController.pode_plantar(planta_selecionada):
+		GameController.novo_erro.emit("Sem sementes!")
 		return
-		
+
 	var tilemap = get_tree().get_first_node_in_group("mapa")
 	if tilemap == null:
 		return
-		
+
 	# 1. Posição Alvo
 	var posicao_interna = tilemap.to_local(global_position)
 	var coord_mapa = tilemap.local_to_map(posicao_interna)
 	var posicao_alvo_global = tilemap.to_global(tilemap.map_to_local(coord_mapa))
-	
+
 	# 2. Verifica se já existe uma torre
 	for torre in get_tree().get_nodes_in_group("torres"):
 		if torre.global_position.distance_to(posicao_alvo_global) < 1.0:
@@ -100,17 +102,21 @@ func place_tower() -> void:
 		GameController.novo_erro.emit("Terreno Inválido!")
 		return
 
-	# 4. Verifica economia e constrói
-	var new_tower = tower_scenes[0].instantiate()
-	
-	if GameController.dinheiro_atual >= new_tower.stats.preco:
-		get_parent().add_child(new_tower)
-		new_tower.global_position = posicao_alvo_global
-		new_tower.add_to_group("torres")
-		GameController.diminui_dinheiro(new_tower.stats.preco)
-	else:
+	var slot = GameController.inventario[planta_selecionada]
+	var tower_scene: PackedScene = GameController.plantas[slot["planta_idx"]]
+	var new_tower = tower_scene.instantiate()
+
+	if GameController.dinheiro_atual < new_tower.stats.preco:
 		new_tower.free()
-		GameController.novo_erro.emit("Dinheiro Insuficiente!")
+		GameController.novo_erro.emit("Dinheiro insuficiente!")
+		return
+
+	# 4. Verifica economia e constrói
+	get_parent().add_child(new_tower)
+	new_tower.global_position = posicao_alvo_global
+	new_tower.add_to_group("torres")
+	GameController.diminui_dinheiro(new_tower.stats.preco)
+	GameController.usar_semente(planta_selecionada)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and not invulneravel:
