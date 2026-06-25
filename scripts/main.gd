@@ -6,12 +6,7 @@ extends Node2D
 @export var enemy_leve: PackedScene
 @export var enemy_pesado: PackedScene
 
-@onready var entradas: Array = [
-	[$PathA1, $PathA2],
-	[$PathB1, $PathB2],
-	[$PathC1, $PathC2],
-	[$PathD1, $PathD2],
-]
+@onready var entradas: Array = [$PathA1, $PathB1, $PathC1, $PathD1]
 
 const RODADAS_DESBLOQUEIO = {2: 1, 5: 2, 8: 3}  # rodada: índice da entrada desbloqueada
 
@@ -106,8 +101,7 @@ func _definir_enemies_da_rodada(rodada: int):
 	]
 
 func _spawn_enemy():
-	var caminhos: Array = _sorteio_ponderado(entradas_ativas, pesos_ativos)
-	var path: Path2D = caminhos.pick_random()
+	var path: Path2D = _sorteio_ponderado(entradas_ativas, pesos_ativos)
 
 	# crea el PathFollow2D y lo agrega al camino
 	var follow = PathFollow2D.new()
@@ -135,3 +129,7 @@ func _sorteio_ponderado(opcoes: Array, pesos: Array):
 			return opcoes[i]
 
 	return opcoes[-1]
+
+func _on_zona_tienda_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		$Tienda.abrir()

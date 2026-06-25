@@ -19,6 +19,7 @@ var morto: bool = false
 
 func _ready() -> void:
 	GameController.plantas = plantas
+	GameController.inicializar_plantas()
 	GameController.player_morreu.connect(_on_player_morreu)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -106,16 +107,10 @@ func place_tower() -> void:
 	var tower_scene: PackedScene = GameController.plantas[slot["planta_idx"]]
 	var new_tower = tower_scene.instantiate()
 
-	if GameController.dinheiro_atual < new_tower.stats.preco:
-		new_tower.free()
-		GameController.novo_erro.emit("Dinheiro insuficiente!")
-		return
-
-	# 4. Verifica economia e constrói
+	# 4. Constrói e desconta semente
 	get_parent().add_child(new_tower)
 	new_tower.global_position = posicao_alvo_global
 	new_tower.add_to_group("torres")
-	GameController.diminui_dinheiro(new_tower.stats.preco)
 	GameController.usar_semente(planta_selecionada)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

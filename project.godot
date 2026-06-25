@@ -24,6 +24,7 @@ GameController="*uid://vh5un085jayk"
 enemy=""
 torres=""
 mapa=""
+player=""
 
 [input]
 

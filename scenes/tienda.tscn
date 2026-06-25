@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2o7747mcwqpl"]
+
+[ext_resource type="Script" uid="uid://b7cdpikwblve7" path="res://scripts/tienda.gd" id="1_2puif"]
+
+[node name="Tienda" type="CanvasLayer" unique_id=1489467583]
+script = ExtResource("1_2puif")
