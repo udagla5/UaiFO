@@ -11,3 +11,4 @@ recompensa = 25
 min_walk_time = 2.5
 max_walk_time = 3.0
 max_pause_time = 3.0
+tamanho = 1.4

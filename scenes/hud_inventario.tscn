@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dq3428qlqmx6u"]
+
+[ext_resource type="Script" uid="uid://bm3b352xas7vi" path="res://scripts/hud_inventario.gd" id="1_ikftm"]
+[ext_resource type="PackedScene" uid="uid://dnyadwf6y6ilf" path="res://scenes/slot_inventario.tscn" id="2_0o0r1"]
+[ext_resource type="Texture2D" uid="uid://csex1qfk3bdc3" path="res://assets/items.png" id="2_r0ssu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0ssu"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(0, 960, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o0r1"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(320, 960, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcerb"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(1040, 80, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvj65"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(400, 80, 170, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35qrw"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(720, 50, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hlr8"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(390, 390, 180, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqkci"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(720, 400, 160, 170)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyu33"]
+atlas = ExtResource("2_r0ssu")
+region = Rect2(1040, 400, 160, 170)
+
+[node name="hud_inventario" type="CanvasLayer" unique_id=1574861959]
+script = ExtResource("1_ikftm")
+slot_scene = ExtResource("2_0o0r1")
+textura_slot_normal = SubResource("AtlasTexture_r0ssu")
+textura_slot_seleccionado = SubResource("AtlasTexture_0o0r1")
+texturas_semillas = Array[Texture2D]([SubResource("AtlasTexture_bcerb"), SubResource("AtlasTexture_bvj65"), SubResource("AtlasTexture_35qrw"), SubResource("AtlasTexture_2hlr8"), SubResource("AtlasTexture_jqkci"), SubResource("AtlasTexture_dyu33")])
+
+[node name="Slots" type="HBoxContainer" parent="." unique_id=940850837]
+offset_left = 335.0
+offset_top = 460.0
+offset_right = 375.0
+offset_bottom = 500.0
+theme_override_constants/separation = 80

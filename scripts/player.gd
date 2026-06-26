@@ -31,6 +31,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_2: planta_selecionada = 1
 			KEY_3: planta_selecionada = 2
 			KEY_4: planta_selecionada = 3
+			KEY_5: planta_selecionada = 4
+			KEY_6: planta_selecionada = 5
 
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -39,10 +41,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			planta_selecionada = (planta_selecionada + 1) % GameController.slots_max
 
 	if planta_selecionada != anterior:
-		print("Planta selecionada: ", planta_selecionada + 1)
+		GameController.slot_mudou.emit(planta_selecionada)
 
 func _physics_process(delta: float) -> void:
-	if morto:
+	if morto or GameController.tienda_abierta:
+		velocity = Vector2.ZERO
+		move_and_slide()
 		return
 
 	if invulneravel:
@@ -76,6 +80,9 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		place_tower()
+
+	if OS.is_debug_build() and Input.is_key_pressed(KEY_M):
+		GameController.aumento_dinheiro(99999)
 
 func place_tower() -> void:
 	if not GameController.pode_plantar(planta_selecionada):

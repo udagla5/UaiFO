@@ -133,3 +133,7 @@ func _sorteio_ponderado(opcoes: Array, pesos: Array):
 func _on_zona_tienda_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		$Tienda.abrir()
+
+func _on_zona_tienda_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		$Tienda.fechar()

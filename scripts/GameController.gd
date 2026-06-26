@@ -7,9 +7,13 @@ signal dinheiro_mudou(novo_dinheiro: int)
 signal novo_erro(erro: String)
 signal player_morreu()
 signal inventario_mudou()
+signal slot_mudou(idx: int)
 
 var plantas: Array[PackedScene] = []
 var plantas_desbloqueadas: Array[bool] = []
+
+const CAPACIDADE_TOPE: int = 60
+const VIDA_CELEIRO_TOPE: int = 400
 
 @export var capacidade_max: int = 10
 @export var slots_max: int = 2
@@ -33,6 +37,7 @@ var inventario: Array = []
 @export var preco_ampliar_vida_max: int = 500
 
 var mortes_player: int = 0
+var tienda_abierta: bool = false
 
 func _ready() -> void:
 	inventario.resize(slots_max)
@@ -155,6 +160,9 @@ func desbloquear_planta(planta_idx: int) -> bool:
 	return true
 
 func comprar_slot() -> bool:
+	if slots_max >= plantas.size():
+		novo_erro.emit("Slots al máximo!")
+		return false
 	if dinheiro_atual < preco_slot_extra:
 		novo_erro.emit("Dinheiro insuficiente!")
 		return false
@@ -166,11 +174,14 @@ func comprar_slot() -> bool:
 	return true
 
 func ampliar_capacidade() -> bool:
+	if capacidade_max >= CAPACIDADE_TOPE:
+		novo_erro.emit("Capacidad al máximo!")
+		return false
 	if dinheiro_atual < preco_ampliar_capacidade:
 		novo_erro.emit("Dinheiro insuficiente!")
 		return false
 	diminui_dinheiro(preco_ampliar_capacidade)
-	capacidade_max += 5
+	capacidade_max = min(capacidade_max + 5, CAPACIDADE_TOPE)
 	inventario_mudou.emit()
 	return true
 
@@ -187,11 +198,14 @@ func curar_celeiro() -> bool:
 	return true
 
 func ampliar_vida_max_celeiro() -> bool:
+	if vida_celeiro_max >= VIDA_CELEIRO_TOPE:
+		novo_erro.emit("Vida máx al límite!")
+		return false
 	if dinheiro_atual < preco_ampliar_vida_max:
 		novo_erro.emit("Dinheiro insuficiente!")
 		return false
 	diminui_dinheiro(preco_ampliar_vida_max)
-	vida_celeiro_max += 25
+	vida_celeiro_max = min(vida_celeiro_max + 25, VIDA_CELEIRO_TOPE)
 	return true
 
 func enviar_mensagem_erro(mensagem: String) -> void:
@@ -203,11 +217,18 @@ func avancar_rodada():
 
 func reset_game():
 	vida_player = 3
+	vida_celeiro_max = 100
 	vida_celeiro = vida_celeiro_max
-	dinheiro_atual = 400
+	dinheiro_atual = 1000
 	rodada_atual = 1
 	mortes_player = 0
+	slots_max = 2
+	capacidade_max = 10
+	inventario.resize(slots_max)
 	inventario.fill(null)
+	inicializar_plantas()
+	adicionar_sementes(0, 5)
+	adicionar_sementes(1, 5)
 	vida_player_mudou.emit(vida_player)
 	dinheiro_mudou.emit(dinheiro_atual)
 	vida_celeiro_mudou.emit(vida_celeiro)

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dn20lo70poi8e" path="res://scenes/player.tscn" id="6_gavis"]
 [ext_resource type="Texture2D" uid="uid://cnvhcfkthrr2g" path="res://assets/celeiro.png" id="7_m0043"]
 [ext_resource type="PackedScene" uid="uid://d2o7747mcwqpl" path="res://scenes/tienda.tscn" id="9_oyo42"]
+[ext_resource type="PackedScene" uid="uid://dq3428qlqmx6u" path="res://scenes/hud_inventario.tscn" id="10_6q6b2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvrg6"]
 texture = ExtResource("1_jnavc")
@@ -574,7 +575,10 @@ texture = ExtResource("7_m0043")
 [node name="ZonaTienda" type="Area2D" parent="." unique_id=1696758391]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZonaTienda" unique_id=1624573661]
-position = Vector2(592, 385.5)
+position = Vector2(592, 389)
 shape = SubResource("RectangleShape2D_1kgqr")
 
+[node name="hud_inventario" parent="." unique_id=1574861959 instance=ExtResource("10_6q6b2")]
+
 [connection signal="body_entered" from="ZonaTienda" to="." method="_on_zona_tienda_body_entered"]
+[connection signal="body_exited" from="ZonaTienda" to="." method="_on_zona_tienda_body_exited"]

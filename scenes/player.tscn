@@ -298,7 +298,7 @@ scale = Vector2(2, 2)
 script = ExtResource("1_3vyb7")
 tempo_max_invuneravel = 1.0
 animation = NodePath("AnimatedSprite2D")
-plantas = Array[PackedScene]([ExtResource("2_dqkch"), ExtResource("3_dqkch"), ExtResource("2_dqkch"), ExtResource("3_dqkch")])
+plantas = Array[PackedScene]([ExtResource("2_dqkch"), ExtResource("3_dqkch"), ExtResource("2_dqkch"), ExtResource("3_dqkch"), ExtResource("2_dqkch"), ExtResource("3_dqkch")])
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1705709239]
 position = Vector2(0.5, 3.75)
