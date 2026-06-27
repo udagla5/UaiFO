@@ -8,3 +8,4 @@ class_name TowerStats
 @export var alcance: float = 100.0
 @export var tempo_germinacao: float = 2.0
 @export var tempo_vida: float = 15.0
+@export var nome_animacao_bala: String = "bala_mirtilo"

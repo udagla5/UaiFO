@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
@@ -13,6 +12,8 @@ var tempo_atual_invuneravel: float = 0
 @export var respawn_point: Node2D
 @export var tempo_respawn: float = 5.0
 @export var tempo_respawn_incremento: float = 2.0
+
+@export var ajuste_offset_tile: Vector2 = Vector2(25, 25)
 
 var planta_selecionada: int = 0
 var morto: bool = false
@@ -61,14 +62,12 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * SPEED
 
 	if direction != Vector2.ZERO:
-		
 		if abs(direction.x) >= abs(direction.y):
 			if direction.x > 0:
 				animation.play("walk_right")
 			else:
 				animation.play("walk_left")
 		else:
-			# Movimento vertical é mais forte
 			if direction.y < 0:
 				animation.play("walk_up")
 			else:
@@ -83,6 +82,9 @@ func _physics_process(delta: float) -> void:
 
 	if OS.is_debug_build() and Input.is_key_pressed(KEY_M):
 		GameController.aumento_dinheiro(99999)
+		
+	atualizar_seletor_visual()
+
 
 func place_tower() -> void:
 	if not GameController.pode_plantar(planta_selecionada):
@@ -93,18 +95,15 @@ func place_tower() -> void:
 	if tilemap == null:
 		return
 
-	# 1. Posição Alvo
 	var posicao_interna = tilemap.to_local(global_position)
 	var coord_mapa = tilemap.local_to_map(posicao_interna)
 	var posicao_alvo_global = tilemap.to_global(tilemap.map_to_local(coord_mapa))
 
-	# 2. Verifica se já existe uma torre
 	for torre in get_tree().get_nodes_in_group("torres"):
 		if torre.global_position.distance_to(posicao_alvo_global) < 1.0:
 			GameController.novo_erro.emit("Local Ocupado!")
 			return
 
-	# 3. Verifica permissão do terreno
 	var dados_do_chao = tilemap.get_cell_tile_data(coord_mapa)
 	if dados_do_chao == null or not dados_do_chao.get_custom_data("pode_construir"):
 		GameController.novo_erro.emit("Terreno Inválido!")
@@ -114,11 +113,39 @@ func place_tower() -> void:
 	var tower_scene: PackedScene = GameController.plantas[slot["planta_idx"]]
 	var new_tower = tower_scene.instantiate()
 
-	# 4. Constrói e desconta semente
 	get_parent().add_child(new_tower)
 	new_tower.global_position = posicao_alvo_global
 	new_tower.add_to_group("torres")
 	GameController.usar_semente(planta_selecionada)
+
+
+func atualizar_seletor_visual() -> void:
+	var tilemap = get_tree().get_first_node_in_group("mapa")
+	var seletor = get_tree().get_first_node_in_group("seletor_tile")
+	
+	if tilemap == null or seletor == null:
+		return
+		
+	var posicao_interna = tilemap.to_local(global_position)
+	var coord_mapa = tilemap.local_to_map(posicao_interna)
+	var posicao_alvo_global = tilemap.to_global(tilemap.map_to_local(coord_mapa)) - ajuste_offset_tile
+	
+	seletor.global_position = posicao_alvo_global
+	
+	var espaco_ocupado = false
+	for torre in get_tree().get_nodes_in_group("torres"):
+		if torre.global_position.distance_to(posicao_alvo_global) < 1.0:
+			espaco_ocupado = true
+			break
+			
+	var dados_do_chao = tilemap.get_cell_tile_data(coord_mapa)
+	var terreno_invalido = (dados_do_chao == null or not dados_do_chao.get_custom_data("pode_construir"))
+	
+	if espaco_ocupado or terreno_invalido:
+		seletor.modulate = Color(1, 0, 0, 0.5) 
+	else:
+		seletor.modulate = Color(1, 1, 1, 1)   
+
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy") and not invulneravel:
@@ -127,6 +154,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		GameController.damage_player(1)
 		invulneravel = true
 		tempo_atual_invuneravel = 0
+
 
 func _on_player_morreu() -> void:
 	morto = true

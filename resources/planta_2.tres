@@ -10,3 +10,4 @@ cadencia = 0.5
 alcance = 10.0
 tempo_germinacao = 5.0
 tempo_vida = 20.0
+nome_animacao_bala = "bala_milho"

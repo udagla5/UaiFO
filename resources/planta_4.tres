@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TowerStats" format=3 uid="uid://dv3qnirj1o5q1"]
+
+[ext_resource type="Script" uid="uid://dqnqk4qutwwgo" path="res://scripts/TowerStats.gd" id="1_ypea8"]
+
+[resource]
+script = ExtResource("1_ypea8")
+preco = 100
+dano_bala = 25
+velocidade_bala = 200.0
+alcance = 20.0
+nome_animacao_bala = "bala_cereja"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TowerStats" format=3 uid="uid://0mfgaw6kdv8e"]
+
+[ext_resource type="Script" uid="uid://dqnqk4qutwwgo" path="res://scripts/TowerStats.gd" id="1_jwhuh"]
+
+[resource]
+script = ExtResource("1_jwhuh")
+dano_bala = 50
+velocidade_bala = 150.0
+cadencia = 0.5
+alcance = 10.0
+tempo_germinacao = 5.0
+tempo_vida = 20.0
+nome_animacao_bala = "bala_berinjela"

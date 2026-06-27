@@ -12,8 +12,8 @@ script = ExtResource("1_fp1g3")
 [node name="path_mapa" parent="." unique_id=6637814 instance=ExtResource("1_og8nj")]
 
 [node name="celeiro" parent="." unique_id=873078762 instance=ExtResource("4_ey4mx")]
-position = Vector2(343, 364)
-scale = Vector2(12, 6)
+position = Vector2(416, 363)
+scale = Vector2(8, 6)
 
 [node name="Timer" type="Timer" parent="." unique_id=830971556]
 wait_time = 0.2

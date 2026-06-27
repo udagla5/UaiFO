@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://ta367eydp7ff"]
+
+[ext_resource type="Script" uid="uid://msibeepdr4qs" path="res://scripts/bullet.gd" id="1_8ikfe"]
+[ext_resource type="Texture2D" uid="uid://bcj4pkxiuhh21" path="res://assets/Balas (VER 2) 16x16.png" id="2_4rjle"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1aey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8425"]
+atlas = ExtResource("2_4rjle")
+region = Rect2(160, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_foguj"]
+atlas = ExtResource("2_4rjle")
+region = Rect2(320, 160, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m32r2"]
+atlas = ExtResource("2_4rjle")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fxoi"]
+atlas = ExtResource("2_4rjle")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1oy0n"]
+atlas = ExtResource("2_4rjle")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7dah"]
+atlas = ExtResource("2_4rjle")
+region = Rect2(0, 160, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aogow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8425")
+}],
+"loop": true,
+"name": &"bala_alface",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_foguj")
+}],
+"loop": true,
+"name": &"bala_berinjela",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m32r2")
+}],
+"loop": true,
+"name": &"bala_cereja",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fxoi")
+}],
+"loop": true,
+"name": &"bala_milho",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oy0n")
+}],
+"loop": true,
+"name": &"bala_mirtilo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7dah")
+}],
+"loop": true,
+"name": &"bala_tomate",
+"speed": 5.0
+}]
+
+[node name="bullet" type="Area2D" unique_id=228919853]
+collision_mask = 2
+script = ExtResource("1_8ikfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1808443526]
+shape = SubResource("RectangleShape2D_h1aey")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1538871255]
+position = Vector2(1.1444092e-05, -1.0000114)
+scale = Vector2(0.24375, 0.24375)
+sprite_frames = SubResource("SpriteFrames_aogow")
+animation = &"bala_mirtilo"
+autoplay = "bala_mirtilo"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
